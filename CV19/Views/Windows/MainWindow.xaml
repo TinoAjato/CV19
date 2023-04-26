@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cmd="clr-namespace:CV19.Infrastructure.Commands"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.com/icons/"
     xmlns:local="clr-namespace:CV19"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:CV19.ViewModels"
@@ -46,7 +47,20 @@
             </StatusBarItem>
         </StatusBar>
         <TabControl>
-            <TabItem Header="Вкладка 1">
+            <TabItem>
+
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <!--<Image Source="" />-->
+                        <fa:ImageAwesome
+                            Height="8"
+                            Margin="1,2,5,0"
+                            Foreground="Red"
+                            Icon="Regular_File" />
+                        <TextBlock Text="Вкладка 1" />
+                    </StackPanel>
+                </TabItem.Header>
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60*" />
