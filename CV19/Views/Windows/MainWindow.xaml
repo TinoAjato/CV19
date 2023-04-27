@@ -7,6 +7,7 @@
     xmlns:fa="http://schemas.fontawesome.com/icons/"
     xmlns:local="clr-namespace:CV19"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:oxy="http://oxyplot.org/wpf"
     xmlns:vm="clr-namespace:CV19.ViewModels"
     Title="{Binding Path=Title}"
     Width="800"
@@ -47,7 +48,7 @@
             </StatusBarItem>
         </StatusBar>
         <TabControl>
-            <TabItem>
+            <TabItem Visibility="Collapsed">
 
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -67,14 +68,17 @@
                         <RowDefinition Height="140*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150*" />
-                        <ColumnDefinition Width="600*" />
+                        <ColumnDefinition Width="113*" />
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="38*" />
+                        <ColumnDefinition Width="635*" />
                     </Grid.ColumnDefinitions>
 
                     <Rectangle
                         Grid.Row="0"
                         Grid.Column="0"
-                        Margin="5,7"
+                        Grid.ColumnSpan="3"
+                        Margin="5,7,5,7"
                         Fill="Black"
                         RadiusX="5"
                         RadiusY="10"
@@ -83,8 +87,8 @@
 
                     <Ellipse
                         Grid.Row="0"
-                        Grid.Column="1"
-                        Margin="5,7"
+                        Grid.Column="3"
+                        Margin="5,7,5,7"
                         Fill="Black"
                         Stroke="Red"
                         StrokeThickness="3">
@@ -95,7 +99,19 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Вкладка 2" />
+            <TabItem Header="График">
+                <oxy:Plot>
+                    <oxy:Plot.Axes>
+                        <oxy:LinearAxis Position="Left" />
+                        <oxy:LinearAxis Position="Bottom" />
+                    </oxy:Plot.Axes>
+                    <oxy:LineSeries
+                        DataFieldX="XValue"
+                        DataFieldY="YValue"
+                        ItemsSource="{Binding TestDataPoint}"
+                        Color="Red" />
+                </oxy:Plot>
+            </TabItem>
         </TabControl>
     </DockPanel>
 
