@@ -33,7 +33,7 @@ namespace CV19Console
                         {
                             continue;
                         }
-                        yield return line;
+                        yield return line.Replace( "Korea,", "Korea -" ).Replace( "Bonaire,", "Bonaire -" );
                     }
                 }
             }
@@ -46,6 +46,23 @@ namespace CV19Console
             .Select( s => DateTime.Parse( s, CultureInfo.InvariantCulture ) )
             .ToArray();
 
+        private static IEnumerable<(string Contry, string Province, int[] Counts)> GetData()
+        {
+            var lines = GetDataLines()
+                .Skip( 1 )
+                .Select( line => line.Split( ',' ) );
+
+            foreach (var item in lines)
+            {
+                var province = item[0].Trim();
+                var contry_name = item[1].Trim( ' ', '"' );
+
+                var counts = item.Skip( 4 ).Select( int.Parse ).ToArray();
+
+                yield return (contry_name, province, counts);
+            }
+        }
+
         static void Main( string[] args )
         {
             //foreach (var dataLine in GetDataLines())
@@ -53,9 +70,13 @@ namespace CV19Console
             //    Console.WriteLine( dataLine );
             //}
 
-            var dates = GetDates();
+            //var dates = GetDates();
+            //Console.WriteLine( string.Join( "\r\n", dates ) );
 
-            Console.WriteLine( string.Join( "\r\n", dates ) );
+            var russia_data = GetData()
+                .First( v => v.Contry.Equals( "Russia", StringComparison.OrdinalIgnoreCase ) );
+
+            Console.WriteLine( string.Join( "\r\n", GetDates().Zip( russia_data.Counts, ( date, count ) => $"{date:dd.MM.yyyy} - {count}" ) ) );
 
             Console.ReadLine();
         }
