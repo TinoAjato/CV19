@@ -60,54 +60,22 @@
             <StatusBarItem Content="{Binding SelectedPageIndex}" />
         </StatusBar>
         <TabControl SelectedIndex="{Binding SelectedPageIndex}">
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <!--<Image Source="" />-->
-                        <fa:ImageAwesome
-                            Height="8"
-                            Margin="1,2,5,0"
-                            Foreground="Red"
-                            Icon="Regular_File" />
-                        <TextBlock Text="Вкладка 1" />
-                    </StackPanel>
-                </TabItem.Header>
-
+            <TabItem Header="Студенты">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60*" />
-                        <RowDefinition Height="140*" />
-                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="113*" />
-                        <ColumnDefinition Width="8*" />
-                        <ColumnDefinition Width="38*" />
-                        <ColumnDefinition Width="635*" />
+                        <!--<ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="7*" />-->
+                        <ColumnDefinition Width="250" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Column="0" Header="Группы">
+                        <ListBox DisplayMemberPath="Name" ItemsSource="{Binding Groups}" />
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="Студенты">
+                        <DataGrid>
 
-                    <Rectangle
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="3"
-                        Margin="5,7,5,7"
-                        Fill="Black"
-                        RadiusX="5"
-                        RadiusY="10"
-                        Stroke="Red"
-                        StrokeThickness="3" />
-
-                    <Ellipse
-                        Grid.Row="0"
-                        Grid.Column="3"
-                        Margin="5,7,5,7"
-                        Fill="Black"
-                        Stroke="Red"
-                        StrokeThickness="3">
-                        <Ellipse.InputBindings>
-                            <MouseBinding Command="{Binding CloseApplicationCommand}" MouseAction=" LeftDoubleClick" />
-                        </Ellipse.InputBindings>
-                    </Ellipse>
-
+                        </DataGrid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="График">
