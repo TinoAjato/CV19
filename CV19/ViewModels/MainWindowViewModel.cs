@@ -24,9 +24,19 @@ namespace CV19.ViewModels
         }
         #endregion
 
+        public object[] CompositeCollection { get; }
+
+        #region SelectedCompositeValue:object - Выбранный непонятный элемент
+        private object _SelectedCompositeValue;
+        /// <summary>Выбранный непонятный элемент</summary>
+        public object SelectedCompositeValue {
+            get => _SelectedCompositeValue;
+            set => Set( ref _SelectedCompositeValue, value );
+        }
+        #endregion
 
         #region SelectedPageIndex:int - Номер выбранной вкладки
-        private int _SelectedPageIndex;
+        private int _SelectedPageIndex = 2;
         /// <summary>Номер выбранной вкладки</summary>
         public int SelectedPageIndex {
             get => _SelectedPageIndex;
@@ -96,6 +106,7 @@ namespace CV19.ViewModels
 
             #endregion
 
+            /**********************************************************************************/
             var data_point = new List<DataPoint>( (int) (360 / 0.1) );
             for (var x = 0d; x <= 360; x += 0.1)
             {
@@ -120,7 +131,17 @@ namespace CV19.ViewModels
             } );
             Groups = new ObservableCollection<Group>( groups );
 
+            /**********************************************************************************/
+            var group = Groups[1];
 
+            var dataList = new List<object> {
+                "string ",
+                42,
+                group,
+                group.Students.First()
+            };
+
+            CompositeCollection = dataList.ToArray();
         }
 
 
