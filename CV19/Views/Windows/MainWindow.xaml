@@ -80,46 +80,64 @@
                         <DataGrid
                             AlternatingRowBackground="LightGray"
                             AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
                             GridLinesVisibility="Vertical"
-                            IsReadOnly="True"
+                            IsReadOnly="False"
                             ItemsSource="{Binding SelectedGroup.Students}"
                             VerticalGridLinesBrush="DarkGray">
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Width="Auto"
                                     Binding="{Binding Surname}"
-                                    Header="Фамилия" />
+                                    Header="Фамилия"
+                                    IsReadOnly="True" />
                                 <DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding Name}"
-                                    Header="Имя" />
+                                    Header="Имя"
+                                    IsReadOnly="True" />
                                 <DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding Patronymic}"
-                                    Header="Отчество" />
+                                    Header="Отчество"
+                                    IsReadOnly="True" />
                                 <DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding Rating}"
-                                    Header="Рейтинг" />
+                                    Header="Рейтинг"
+                                    IsReadOnly="True" />
                                 <!--<DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"
                                     Header="Дата рождения" />-->
                                 <DataGridTemplateColumn Header="Дата рождения">
-                                    <DataGridTemplateColumn.CellTemplate>
+                                    <!--<DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate DataType="decanat:Student">
                                             <DatePicker SelectedDate="{Binding Birthday}"></DatePicker>
                                         </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>-->
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="decanat:Student">
+                                            <TextBlock Text="{Binding Birthday, StringFormat=dd.MM.yyyy}" />
+                                        </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate DataType="decanat:Student">
+                                            <DatePicker SelectedDate="{Binding Birthday}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                    Header="Группа" />
+                                    Header="Группа"
+                                    IsReadOnly="True" />
                                 <DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding Description}"
-                                    Header="Описание" />
+                                    Header="Описание"
+                                    IsReadOnly="True" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
