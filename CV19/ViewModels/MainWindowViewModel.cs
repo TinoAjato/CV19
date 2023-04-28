@@ -20,9 +20,9 @@ namespace CV19.ViewModels
         #endregion
 
         #region DataPoint:IEnumerable<DataPoint> - Набор данных для визуализации
-        private IEnumerable<DataPoint> _TestDataPoint;
+        private IEnumerable<DataPoint>? _TestDataPoint;
         /// <summary>Набор данных для визуализации</summary>
-        public IEnumerable<DataPoint> TestDataPoint {
+        public IEnumerable<DataPoint>? TestDataPoint {
             get => _TestDataPoint;
             set => Set( ref _TestDataPoint, value );
         }
@@ -38,7 +38,7 @@ namespace CV19.ViewModels
         #endregion
 
         #region Status:string - Статус
-        private string _Status = "Good!";
+        private string _Status = string.Empty;
         /// <summary>Статус</summary>
         public string Status {
             get => _Status;
@@ -56,7 +56,6 @@ namespace CV19.ViewModels
             Application.Current.Shutdown();
         }
         #endregion
-
 
         #region ChangetTabIndexCommand
         public ICommand ChangetTabIndexCommand { get; }
@@ -90,7 +89,6 @@ namespace CV19.ViewModels
                 data_point.Add( new DataPoint { XValue = x, YValue = y } );
             }
             TestDataPoint = data_point;
-
         }
 
 

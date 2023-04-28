@@ -8,14 +8,14 @@ namespace CV19.Infrastructure.Commands
         private readonly Action<object> _Execute;
         private readonly Func<object, bool> _CanExecute;
 
-        public LambdaCommand( Action<object> Execute, Func<object, bool> CanExecute = null )
+        public LambdaCommand( Action<object> Execute, Func<object, bool> CanExecute = null! )
         {
-            _Execute = Execute ?? throw new ArgumentException( nameof( Execute ) );
+            _Execute = Execute ?? throw new ArgumentException( "Параметр не должен быть равен null", nameof( Execute ) );
             _CanExecute = CanExecute;
         }
 
-        public override bool CanExecute( object? parameter ) => _CanExecute?.Invoke( parameter ) ?? true;
+        public override bool CanExecute( object? parameter ) => _CanExecute?.Invoke( parameter! ) ?? true;
 
-        public override void Execute( object? parameter ) => _Execute( parameter );
+        public override void Execute( object? parameter ) => _Execute( parameter! );
     }
 }
