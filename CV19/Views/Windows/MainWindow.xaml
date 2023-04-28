@@ -69,11 +69,43 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Группы">
-                        <ListBox DisplayMemberPath="Name" ItemsSource="{Binding Groups}" />
+                        <ListBox
+                            DisplayMemberPath="Name"
+                            ItemsSource="{Binding Groups}"
+                            SelectedIndex="0"
+                            SelectedItem="{Binding SelectedGroup}" />
                     </GroupBox>
-                    <GroupBox Grid.Column="1" Header="Студенты">
-                        <DataGrid>
-
+                    <GroupBox Grid.Column="1" Header="{Binding Path=SelectedGroup.Name, StringFormat=Студенты группы {0}, FallbackValue=Студенты, TargetNullValue=Группа не выбрана}">
+                        <DataGrid
+                            AutoGenerateColumns="False"
+                            IsReadOnly="True"
+                            ItemsSource="{Binding SelectedGroup.Students}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding Surname}"
+                                    Header="Фамилия" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding Name}"
+                                    Header="Имя" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding Patronymic}"
+                                    Header="Отчество" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding Rating}"
+                                    Header="Рейтинг" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"
+                                    Header="Дата рождения" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    Header="Группа" />
+                            </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
                 </Grid>
