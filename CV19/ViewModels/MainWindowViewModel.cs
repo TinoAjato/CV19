@@ -36,7 +36,7 @@ namespace CV19.ViewModels
         #endregion
 
         #region SelectedPageIndex:int - Номер выбранной вкладки
-        private int _SelectedPageIndex = 2;
+        private int _SelectedPageIndex = 0;
         /// <summary>Номер выбранной вкладки</summary>
         public int SelectedPageIndex {
             get => _SelectedPageIndex;
@@ -95,6 +95,40 @@ namespace CV19.ViewModels
         }
         #endregion
 
+        #region CreateGroupCommand
+        public ICommand CreateGroupCommand { get; }
+        private bool CanCreateGroupCommandExecute( object p ) => true;
+        private void OnCreateGroupCommandExecuted( object p )
+        {
+            var groupMaxIndex = Groups.Count + 1;
+            var newGroup = new Group {
+                Name = $"Группа {groupMaxIndex}",
+                Students = new ObservableCollection<Student>()
+            };
+
+            Groups.Add( newGroup );
+
+            SelectedGroup = newGroup;
+        }
+        #endregion
+
+        #region DeleteGroupCommand
+        public ICommand DeleteGroupCommand { get; }
+        private bool CanDeleteGroupCommandExecute( object p ) => p is Group group && Groups.Contains( group );
+        private void OnDeleteGroupCommandExecuted( object p )
+        {
+            if (p is not Group group)
+                return;
+
+            var groupIndex = Groups.IndexOf( group );
+            Groups.Remove( group );
+            if (groupIndex < Groups.Count)
+            {
+                SelectedGroup = Groups[groupIndex];
+            }
+        }
+        #endregion
+
         #endregion
 
         public MainWindowViewModel()
@@ -103,6 +137,8 @@ namespace CV19.ViewModels
 
             CloseApplicationCommand = new LambdaCommand( OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute );
             ChangetTabIndexCommand = new LambdaCommand( OnChangetTabIndexCommandExecuted, CanChangetTabIndexCommandExecute );
+            CreateGroupCommand = new LambdaCommand( OnCreateGroupCommandExecuted, CanCreateGroupCommandExecute );
+            DeleteGroupCommand = new LambdaCommand( OnDeleteGroupCommandExecuted, CanDeleteGroupCommandExecute );
 
             #endregion
 

@@ -71,19 +71,42 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Группы">
-                        <ListBox
-                            ItemsSource="{Binding Groups}"
-                            SelectedIndex="0"
-                            SelectedItem="{Binding SelectedGroup}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate DataType="decanat:Group">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Name}" />
-                                        <TextBlock Margin="5,0" Text="{Binding Students.Count, StringFormat=[Студентов:{0}]}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                        <DockPanel>
+                            <UniformGrid
+                                Margin="0,3"
+                                DockPanel.Dock="Bottom"
+                                Rows="1">
+                                <UniformGrid.Resources>
+                                    <Style x:Key="bStyle" TargetType="Button">
+                                        <Setter Property="Margin" Value="3,0" />
+                                        <Setter Property="Padding" Value="3,5" />
+                                        <Setter Property="Background" Value="White" />
+                                    </Style>
+                                </UniformGrid.Resources>
+                                <Button
+                                    Command="{Binding CreateGroupCommand}"
+                                    Content="Добавить"
+                                    Style="{StaticResource bStyle}" />
+                                <Button
+                                    Command="{Binding DeleteGroupCommand}"
+                                    CommandParameter="{Binding SelectedGroup}"
+                                    Content="Удалить"
+                                    Style="{StaticResource bStyle}" />
+                            </UniformGrid>
+                            <ListBox
+                                ItemsSource="{Binding Groups}"
+                                SelectedIndex="0"
+                                SelectedItem="{Binding SelectedGroup}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="decanat:Group">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}" />
+                                            <TextBlock Margin="5,0" Text="{Binding Students.Count, StringFormat=[Студентов:{0}]}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DockPanel>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="{Binding Path=SelectedGroup.Name, StringFormat=Студенты группы {0}, FallbackValue=Студенты, TargetNullValue=Группа не выбрана}">
                         <DataGrid
