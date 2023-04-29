@@ -21,6 +21,11 @@
 
     <Window.Resources>
         <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand" />
+
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="Red" />
+        </Style>
+
     </Window.Resources>
 
     <DockPanel>
@@ -80,18 +85,17 @@
                                     <Style x:Key="bStyle" TargetType="Button">
                                         <Setter Property="Margin" Value="3,0" />
                                         <Setter Property="Padding" Value="3,5" />
-                                        <Setter Property="Background" Value="White" />
                                     </Style>
                                 </UniformGrid.Resources>
                                 <Button
                                     Command="{Binding CreateGroupCommand}"
                                     Content="Добавить"
-                                    Style="{StaticResource bStyle}" />
+                                    Style="{StaticResource PrimaryButton}" />
                                 <Button
                                     Command="{Binding DeleteGroupCommand}"
                                     CommandParameter="{Binding SelectedGroup}"
                                     Content="Удалить"
-                                    Style="{StaticResource bStyle}" />
+                                    Style="{StaticResource DangerButton}" />
                             </UniformGrid>
                             <ListBox
                                 ItemsSource="{Binding Groups}"
@@ -268,7 +272,13 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Вкладка 2" />
+            <TabItem Header="Вкладка 2">
+                <Button
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="Qwqeqw ewqfdwf wsefsfsfw"
+                    Style="{StaticResource PrimaryButton}" />
+            </TabItem>
             <TabItem Header="Вкладка 3" />
             <TabItem Header="Вкладка 4" />
         </TabControl>

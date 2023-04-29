@@ -4,5 +4,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:CV19"
     StartupUri="Views/Windows/MainWindow.xaml">
-    <Application.Resources />
+    <Application.Resources>
+
+        <Style x:Key="BtnBase" TargetType="Button">
+            <Setter Property="Background" Value="Wheat" />
+        </Style>
+
+        <Style
+            x:Key="PrimaryButton"
+            BasedOn="{StaticResource BtnBase}"
+            TargetType="Button">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style
+            x:Key="DangerButton"
+            BasedOn="{StaticResource BtnBase}"
+            TargetType="Button">
+            <Setter Property="Foreground" Value="Green" />
+        </Style>
+    </Application.Resources>
 </Application>
