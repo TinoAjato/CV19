@@ -99,9 +99,14 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="decanat:Group">
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Name}" />
+                                            <TextBlock Name="TView" Text="{Binding Name}" />
                                             <TextBlock Margin="5,0" Text="{Binding Students.Count, StringFormat=[Студентов:{0}]}" />
                                         </StackPanel>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Students.Count}" Value="0">
+                                                <Setter TargetName="TView" Property="Foreground" Value="Red" />
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
@@ -111,7 +116,6 @@
                         <DataGrid
                             AlternatingRowBackground="LightGray"
                             AutoGenerateColumns="False"
-                            CanUserAddRows="False"
                             CanUserDeleteRows="False"
                             GridLinesVisibility="Vertical"
                             IsReadOnly="False"
@@ -121,23 +125,19 @@
                                 <DataGridTextColumn
                                     Width="Auto"
                                     Binding="{Binding Surname}"
-                                    Header="Фамилия"
-                                    IsReadOnly="True" />
+                                    Header="Фамилия" />
                                 <DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding Name}"
-                                    Header="Имя"
-                                    IsReadOnly="True" />
+                                    Header="Имя" />
                                 <DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding Patronymic}"
-                                    Header="Отчество"
-                                    IsReadOnly="True" />
+                                    Header="Отчество" />
                                 <DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding Rating}"
-                                    Header="Рейтинг"
-                                    IsReadOnly="True" />
+                                    Header="Рейтинг" />
                                 <!--<DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"
@@ -162,13 +162,11 @@
                                 <DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                    Header="Группа"
-                                    IsReadOnly="True" />
+                                    Header="Группа" />
                                 <DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding Description}"
-                                    Header="Описание"
-                                    IsReadOnly="True" />
+                                    Header="Описание" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
