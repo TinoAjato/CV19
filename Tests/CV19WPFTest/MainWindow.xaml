@@ -10,13 +10,17 @@
     Width="800"
     Height="450"
     Background="{DynamicResource MaterialDesignPaper}"
+    Cursor=""
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    mc:Ignorable="d" Cursor="">
+    mc:Ignorable="d">
+    <Window.Resources>
+
+    </Window.Resources>
     <Grid>
         <Button
             x:Name="button"
@@ -26,7 +30,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Button"
-            RenderTransformOrigin="0.5,0.5">
+            RenderTransformOrigin="0.5,0.5"
+            Style="{DynamicResource ButtonStyle1}">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
