@@ -6,8 +6,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace CV19.ViewModels
@@ -21,7 +23,70 @@ namespace CV19.ViewModels
         /// <summary>Выбранная группа</summary>
         public Group SelectedGroup {
             get => _SelectedGroup;
-            set => Set( ref _SelectedGroup, value );
+            set {
+                if (!Set( ref _SelectedGroup, value ))
+                {
+                    return;
+                }
+                _SelectedGroupStudents.Source = value?.Students;
+                OnPropertyChanged( nameof( SelectedGroupStudents ) );
+            }
+
+        }
+        #endregion
+
+        #region StudentFilterText:string - Текст фильтра студентов
+        private string _StudentFilterText;
+        /// <summary>Текст фильтра студентов</summary>
+        public string StudentFilterText {
+            get => _StudentFilterText;
+            set {
+                if (!Set( ref _StudentFilterText, value ))
+                {
+                    return;
+                }
+                _SelectedGroupStudents.View.Refresh();
+            }
+        }
+        #endregion
+
+        #region SelectedGroupStudents
+        private readonly CollectionViewSource _SelectedGroupStudents = new CollectionViewSource();
+        public ICollectionView? SelectedGroupStudents => _SelectedGroupStudents?.View;
+        private void OnStudentFiltred( object sender, FilterEventArgs e )
+        {
+            if (e.Item is not Student student)
+            {
+                e.Accepted = false;
+                return;
+            }
+
+            var text_filer = _StudentFilterText;
+            if (string.IsNullOrEmpty( text_filer ))
+            {
+                return;
+            }
+
+            if (student.Name is null || student.Surname is null || student.Patronymic is null)
+            {
+                e.Accepted = false;
+                return;
+            }
+
+            if (student.Name.Contains( text_filer, StringComparison.OrdinalIgnoreCase ))
+            {
+                return;
+            }
+            if (student.Surname.Contains( text_filer, StringComparison.OrdinalIgnoreCase ))
+            {
+                return;
+            }
+            if (student.Patronymic.Contains( text_filer, StringComparison.OrdinalIgnoreCase ))
+            {
+                return;
+            }
+
+            e.Accepted = false;
         }
         #endregion
 
@@ -184,9 +249,12 @@ namespace CV19.ViewModels
             };
 
             CompositeCollection = dataList.ToArray();
+
+
+            _SelectedGroupStudents.Filter += OnStudentFiltred;
+
+            //_SelectedGroupStudents.SortDescriptions.Add( new SortDescription( "Name", ListSortDirection.Descending ) );
+            //_SelectedGroupStudents.GroupDescriptions.Add( new PropertyGroupDescription( "Name" ) );
         }
-
-
-
     }
 }
