@@ -50,14 +50,22 @@
             <StatusBarItem Content="{Binding SelectedPageIndex}" />
         </StatusBar>
         <TabControl SelectedIndex="{Binding SelectedPageIndex}">
-            <TabItem Header="Тестирование виртуализации">
+            <TabItem Header="Тестирование виртуализации" Visibility="Collapsed">
                 <Grid>
                     <TextBlock Text="{Binding Source={x:Static local:App.IsDesignMode}}" />
                     <ListBox
                         Width="200"
                         Margin="30"
                         HorizontalAlignment="Left"
-                        ItemsSource="{Binding TestStudents}">
+                        ItemsSource="{Binding TestStudents}"
+                        VirtualizingPanel.IsContainerVirtualizable="True"
+                        VirtualizingPanel.IsVirtualizing="True"
+                        VirtualizingPanel.VirtualizationMode="Recycling">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -167,6 +175,13 @@
                                 IsReadOnly="False"
                                 ItemsSource="{Binding SelectedGroup.Students}"
                                 VerticalGridLinesBrush="DarkGray">
+                                <!--
+                                EnableRowVirtualization="True"
+                                <DataGrid.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </DataGrid.ItemsPanel>-->
                                 <DataGrid.Columns>
                                     <DataGridTextColumn
                                         Width="Auto"
