@@ -60,6 +60,9 @@
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Группы">
                         <DockPanel>
+                            <DockPanel.Resources>
+                                <CollectionViewSource x:Key="GroupsCollection" Source="{Binding Groups}" />
+                            </DockPanel.Resources>
                             <DockPanel Margin="0,0,0,3" DockPanel.Dock="Top">
                                 <fa:ImageAwesome
                                     Height="12"
@@ -83,7 +86,7 @@
                                     Style="{StaticResource RemoveButtonSource}" />
                             </UniformGrid>
                             <ListBox
-                                ItemsSource="{Binding Groups}"
+                                ItemsSource="{Binding Source={StaticResource GroupsCollection}}"
                                 SelectedIndex="0"
                                 SelectedItem="{Binding SelectedGroup}">
                                 <ListBox.ItemTemplate>
