@@ -31,27 +31,10 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <!--<MenuItem Command="{Binding CloseApplicationCommand}" Header="Выход" />-->
-                <!--<MenuItem Header="Выход">
-                    <MenuItem.Command>
-                        <cmd:CloseApplicationCommand />
-                    </MenuItem.Command>
-                </MenuItem>-->
                 <MenuItem Command="{StaticResource CloseApplicationCommand}" Header="Выход" />
             </MenuItem>
             <MenuItem Header="Помощь">
                 <MenuItem Header="О программе" />
-            </MenuItem>
-            <MenuItem Command="{Binding ChangetTabIndexCommand}" CommandParameter="-1">
-                <MenuItem.Header>
-                    <fa:ImageAwesome Height="12" Icon="Regular_ArrowAltCircleLeft" />
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem Header="{Binding SelectedPageIndex}" IsEnabled="False" />
-            <MenuItem Command="{Binding ChangetTabIndexCommand}" CommandParameter="+1">
-                <MenuItem.Header>
-                    <fa:ImageAwesome Height="12" Icon="Regular_ArrowAltCircleRight" />
-                </MenuItem.Header>
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
@@ -172,7 +155,7 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="График">
+            <TabItem Header="График" Visibility="Collapsed">
                 <oxy:Plot>
                     <oxy:Plot.Axes>
                         <oxy:LinearAxis Position="Left" />
@@ -185,106 +168,6 @@
                         Color="Red" />
                 </oxy:Plot>
             </TabItem>
-            <TabItem
-                Height="20"
-                VerticalAlignment="Top"
-                Header="Разнородные данные">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="250" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <GroupBox>
-                        <GroupBox.Header>
-                            <TextBlock Text="Элементы" />
-                        </GroupBox.Header>
-                        <GroupBox.Resources>
-                            <ResourceDictionary>
-                                <ResourceDictionary.MergedDictionaries>
-                                    <ResourceDictionary Source="../../Resources/DataTemplates/CompositeListItemsDataTemplates.xaml" />
-                                </ResourceDictionary.MergedDictionaries>
-                            </ResourceDictionary>
-                        </GroupBox.Resources>
-                        <ListBox
-                            Grid.Column="0"
-                            ItemsSource="{Binding CompositeCollection}"
-                            SelectedItem="{Binding SelectedCompositeValue}" />
-                    </GroupBox>
-                    <GroupBox Grid.Column="1">
-                        <GroupBox.Header>
-                            <TextBlock Text="Выбранный элемент" />
-                        </GroupBox.Header>
-                        <GroupBox.Resources>
-                            <ResourceDictionary>
-                                <ResourceDictionary.MergedDictionaries>
-                                    <ResourceDictionary Source="../../Resources/DataTemplates/CompositeListItemsControlDataTemplates.xaml" />
-                                </ResourceDictionary.MergedDictionaries>
-                            </ResourceDictionary>
-                        </GroupBox.Resources>
-                        <ContentControl Content="{Binding SelectedCompositeValue}" />
-                    </GroupBox>
-                </Grid>
-            </TabItem>
-            <TabItem
-                Height="20"
-                VerticalAlignment="Top"
-                Header="Вкладка 2">
-                <Button
-                    Width="120"
-                    Margin="20"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Content="Q"
-                    Opacity="1"
-                    RenderTransformOrigin="0.5,0.5"
-                    Style="{StaticResource CustomButtonSource}">
-                    <Button.RenderTransform>
-                        <RotateTransform x:Name="ButtonRotate" Angle="0" />
-                    </Button.RenderTransform>
-                    <Button.Background>
-                        <SolidColorBrush x:Name="ButtonBrush" Color="White" />
-                    </Button.Background>
-                    <Button.Triggers>
-                        <EventTrigger RoutedEvent="Button.Click">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation
-                                        AutoReverse="True"
-                                        Storyboard.TargetName="ButtonRotate"
-                                        Storyboard.TargetProperty="Angle"
-                                        From="0"
-                                        To="360"
-                                        Duration="0:0:1" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="Button.MouseEnter">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <ColorAnimation
-                                        Storyboard.TargetName="ButtonBrush"
-                                        Storyboard.TargetProperty="Color"
-                                        To="Red"
-                                        Duration="0:0:1" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="Button.MouseLeave">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <ColorAnimation
-                                        Storyboard.TargetName="ButtonBrush"
-                                        Storyboard.TargetProperty="Color"
-                                        To="White"
-                                        Duration="0:0:1" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </Button.Triggers>
-                </Button>
-            </TabItem>
-            <TabItem Header="Вкладка 3" />
-            <TabItem Header="Вкладка 4" />
         </TabControl>
     </DockPanel>
 
