@@ -3,6 +3,7 @@ using CV19.Models;
 using CV19.Models.Decanat;
 using CV19.ViewModels.Base;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -130,6 +131,11 @@ namespace CV19.ViewModels
         #endregion
 
         #endregion
+
+        public IEnumerable<Student> TestStudents => Enumerable.Range( 1, App.IsDesignMode ? 10 : 100_000 ).Select( i => new Student() {
+            Name = $"Name {i}",
+            Surname = $"Surname {i}"
+        } );
 
         public MainWindowViewModel()
         {
