@@ -51,7 +51,26 @@
             <StatusBarItem Content="{Binding SelectedPageIndex}" />
         </StatusBar>
         <TabControl SelectedIndex="{Binding SelectedPageIndex}">
+            <TabItem Header="Файловая система">
 
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Column="0" Header="Директории">
+                        <ListBox
+                            DisplayMemberPath="Name"
+                            ItemsSource="{Binding DiskRootDir.DirectoryItems}"
+                            SelectedIndex="0"
+                            SelectedItem="{Binding SelectedDirectory}" />
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="Файлы">
+                        <ListBox SelectedItem="{Binding SelectedDirectory.Files, Mode=OneWay}" />
+                    </GroupBox>
+                </Grid>
+
+            </TabItem>
             <TabItem Header="Студенты">
                 <Grid>
                     <Grid.ColumnDefinitions>
