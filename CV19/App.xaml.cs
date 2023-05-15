@@ -1,4 +1,6 @@
-﻿using System.DirectoryServices.ActiveDirectory;
+﻿using CV19.Services;
+using System.DirectoryServices.ActiveDirectory;
+using System.Linq;
 using System.Windows;
 
 namespace CV19
@@ -14,6 +16,11 @@ namespace CV19
         {
             IsDesignMode = false;
             base.OnStartup( e );
+
+
+            var service_test = new DataService();
+            var countries = service_test.GetData().ToArray();
+
         }
     }
 }
