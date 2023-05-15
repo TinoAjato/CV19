@@ -59,11 +59,33 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Директории">
-                        <ListBox
-                            DisplayMemberPath="Name"
+                        <!--<ListBox
                             ItemsSource="{Binding DiskRootDir.DirectoryItems}"
                             SelectedIndex="0"
-                            SelectedItem="{Binding SelectedDirectory}" />
+                            SelectedItem="{Binding SelectedDirectory}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="vm:DirectoryViewModel">
+                                    <TextBlock Text="{Binding Name}" ToolTip="{Binding CreationTIme}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>-->
+                        <TreeView ItemsSource="{Binding DiskRootDir.DirectoryItems}">
+                            <TreeView.ItemTemplate>
+                                <!--<DataTemplate DataType="vm:DirectoryViewModel">
+                                    <TextBlock Text="{Binding Name}" ToolTip="{Binding CreationTIme}" />
+                                </DataTemplate>-->
+                                <HierarchicalDataTemplate DataType="vm:DirectoryViewModel" ItemsSource="{Binding DirectoryItems}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:ImageAwesome
+                                            Height="12"
+                                            Margin="0,0,3,0"
+                                            Foreground="Yellow"
+                                            Icon="Regular_Folder" />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </HierarchicalDataTemplate>
+                            </TreeView.ItemTemplate>
+                        </TreeView>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="Файлы">
                         <ListBox SelectedItem="{Binding SelectedDirectory.Files, Mode=OneWay}" />

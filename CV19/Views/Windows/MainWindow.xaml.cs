@@ -1,6 +1,10 @@
-﻿using CV19.Models.Decanat;
+﻿using CV19.Infrastructure;
+using CV19.Models.Decanat;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
+using static CV19.Infrastructure.ScreenInformation;
 
 namespace CV19
 {
@@ -12,6 +16,14 @@ namespace CV19
         public MainWindow()
         {
             InitializeComponent();
+
+            //LinkedList<WpfScreen> screens = ScreenInformation.GetAllScreens();
+            //WpfScreen secondMonitor = screens.Skip( 1 ).First();
+            //if (secondMonitor is not null)
+            //{
+            //    this.Left = secondMonitor.metrics.left + (secondMonitor.metrics.right - secondMonitor.metrics.left) / 2 - this.Width / 2;
+            //    this.Top = secondMonitor.metrics.top + (secondMonitor.metrics.bottom - secondMonitor.metrics.top) / 2 - this.Height / 2;
+            //}
         }
 
         private void CollectionViewSource_Filter( object sender, System.Windows.Data.FilterEventArgs e )
