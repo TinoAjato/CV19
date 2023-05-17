@@ -4,7 +4,7 @@
     xmlns:fa="http://schemas.fontawesome.com/icons/">
 
     <Style x:Key="BtnBase" TargetType="Button">
-        <Setter Property="Background" Value="Wheat" />
+        <Setter Property="Background" Value="{StaticResource WhiteBrush}" />
     </Style>
 
     <Style
@@ -59,7 +59,7 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="true">
                 <!--<Setter TargetName="border" Property="Background" Value="Blue" />-->
-                <Setter TargetName="border" Property="BorderBrush" Value="White" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource WhiteBrush}" />
                 <Setter Property="Foreground" Value="White" />
             </Trigger>
             <Trigger Property="IsPressed" Value="true">
@@ -76,7 +76,7 @@
 
     <Style x:Key="CustomButtonSource" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background" Value="White" />
+        <Setter Property="Background" Value="{StaticResource WhiteBrush}" />
         <Setter Property="BorderBrush" Value="Black" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -120,7 +120,7 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter TargetName="border" Property="Background" Value="Blue" />
-                <Setter TargetName="border" Property="BorderBrush" Value="White" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource WhiteBrush}" />
                 <Setter Property="Foreground" Value="White" />
             </Trigger>
             <Trigger Property="IsPressed" Value="true">
@@ -137,7 +137,7 @@
 
     <Style x:Key="CheckButtonSource" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background" Value="White" />
+        <Setter Property="Background" Value="{StaticResource WhiteBrush}" />
         <Setter Property="BorderBrush" Value="Black" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -175,10 +175,10 @@
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter TargetName="border" Property="Background" Value="White" />
-                <Setter TargetName="border" Property="BorderBrush" Value="Red" />
+                <Setter TargetName="border" Property="Background" Value="{StaticResource WhiteBrush}" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource RedBrush}" />
                 <Setter Property="Foreground" Value="White" />
-                <Setter TargetName="Icon" Property="Foreground" Value="Red" />
+                <Setter TargetName="Icon" Property="Foreground" Value="{StaticResource RedBrush}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="true">
                 <Setter TargetName="border" Property="Background" Value="WhiteSmoke" />
@@ -196,9 +196,9 @@
 
     <Style x:Key="RemoveButtonSource" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background" Value="Red" />
+        <Setter Property="Background" Value="{StaticResource RedBrush}" />
         <Setter Property="BorderBrush" Value="WhiteSmoke" />
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="{StaticResource WhiteBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
