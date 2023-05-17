@@ -16,6 +16,14 @@ namespace CV19.ViewModels
 
         private DataService _DataService;
 
+        #region SelectedCountry:CountryInfo - Выбранная страна
+        private CountryInfo _SelectedCountry;
+        /// <summary>Выбранная страна</summary>
+        public CountryInfo SelectedCountry {
+            get => _SelectedCountry;
+            set => Set( ref _SelectedCountry, value );
+        }
+        #endregion
 
         #region Contries:IEnumerable<CountryInfo> - Статистика по странам
         private IEnumerable<CountryInfo> _Contries = Enumerable.Empty<CountryInfo>();
