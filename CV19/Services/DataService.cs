@@ -54,7 +54,7 @@ namespace CV19.Services
                 {
                     continue;
                 }
-                yield return line.Replace( "Korea,", "Korea -" ).Replace( "Bonaire,", "Bonaire -" );
+                yield return line.Replace( "Korea,", "Korea -" ).Replace( "Bonaire,", "Bonaire -" ).Replace( "Helena,", "Helena -" );
             }
         }
 
