@@ -57,6 +57,16 @@
                         x:Key="Linear_K5_B3"
                         B="{StaticResource Value3}"
                         K="5" />
+
+                    <c:CompositeConverter x:Key="TestCOnverter">
+                        <c:CompositeConverter.First>
+                            <c:Linear K="2" />
+                        </c:CompositeConverter.First>
+                        <c:CompositeConverter.Second>
+                            <c:Linear B="10" K="-3" />
+                        </c:CompositeConverter.Second>
+                    </c:CompositeConverter>
+
                 </Grid.Resources>
 
                 <Grid.RowDefinitions>
@@ -76,7 +86,7 @@
                     Margin="0,30,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Text="{Binding Value, ElementName=ValueSlider, Converter={StaticResource Linear_K5_B3}, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{Binding Value, ElementName=ValueSlider, Converter={StaticResource TestCOnverter}, UpdateSourceTrigger=PropertyChanged}" />
 
             </Grid>
         </GroupBox>
