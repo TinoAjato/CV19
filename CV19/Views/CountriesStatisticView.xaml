@@ -8,6 +8,7 @@
     xmlns:local="clr-namespace:CV19.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:CV19.Models"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:vm="clr-namespace:CV19.ViewModels"
     d:DataContext="{d:DesignInstance vm:CountriesStatisticViewModel,
                                      IsDesignTimeCreatable=True}"
@@ -50,10 +51,11 @@
         <GroupBox Grid.Column="1" Header="Информация">
             <Grid>
                 <Grid.Resources>
+                    <sys:Double x:Key="Value3">3</sys:Double>
                     <c:Ratio x:Key="Ratio2" K="2" />
                     <c:Linear
                         x:Key="Linear_K5_B3"
-                        B="3"
+                        B="{StaticResource Value3}"
                         K="5" />
                 </Grid.Resources>
 
@@ -74,7 +76,7 @@
                     Margin="0,30,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Text="{Binding Value, ElementName=ValueSlider, Converter={StaticResource Ratio2}, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{Binding Value, ElementName=ValueSlider, Converter={StaticResource Linear_K5_B3}, UpdateSourceTrigger=PropertyChanged}" />
 
             </Grid>
         </GroupBox>
