@@ -66,7 +66,7 @@
                             <c:Linear B="10" K="-3" />
                         </c:CompositeConverter.Second>
                     </c:CompositeConverter>
-
+                    <c:ToArray x:Key="TAConverter" />
                 </Grid.Resources>
 
                 <Grid.RowDefinitions>
@@ -75,18 +75,39 @@
                 </Grid.RowDefinitions>
                 <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
 
-                <Slider
-                    Name="ValueSlider"
-                    Grid.Row="0"
-                    Maximum="100"
-                    ToolTip="{Binding Value, RelativeSource={RelativeSource Self}}" />
-                <TextBox
-                    Grid.Row="0"
-                    Width="200"
-                    Margin="0,30,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Text="{Binding Value, ElementName=ValueSlider, Converter={StaticResource TestCOnverter}, UpdateSourceTrigger=PropertyChanged}" />
+                <StackPanel Grid.Row="0">
+                    <Slider
+                        Name="Value1"
+                        Grid.Row="0"
+                        Maximum="100"
+                        ToolTip="{Binding Value, RelativeSource={RelativeSource Self}}" />
+                    <Slider
+                        Name="Value2"
+                        Grid.Row="0"
+                        Maximum="100"
+                        ToolTip="{Binding Value, RelativeSource={RelativeSource Self}}" />
+                    <Slider
+                        Name="Value3"
+                        Grid.Row="0"
+                        Maximum="100"
+                        ToolTip="{Binding Value, RelativeSource={RelativeSource Self}}" />
+                    <Slider
+                        Name="Value4"
+                        Grid.Row="0"
+                        Maximum="100"
+                        ToolTip="{Binding Value, RelativeSource={RelativeSource Self}}" />
+                </StackPanel>
+
+                <ListBox Grid.Row="1">
+                    <ListBox.ItemsSource>
+                        <MultiBinding Converter="{StaticResource TAConverter}">
+                            <Binding ElementName="Value1" Path="Value" />
+                            <Binding ElementName="Value2" Path="Value" />
+                            <Binding ElementName="Value3" Path="Value" />
+                            <Binding ElementName="Value4" Path="Value" />
+                        </MultiBinding>
+                    </ListBox.ItemsSource>
+                </ListBox>
 
             </Grid>
         </GroupBox>
